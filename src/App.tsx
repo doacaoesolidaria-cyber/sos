@@ -153,12 +153,11 @@ export default function App() {
           <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/50 bg-black aspect-video w-full flex items-center justify-center">
             <video 
               controls 
-              autoPlay 
               playsInline
               className="w-full h-full object-cover"
               poster="https://sosanimalhelp.com/wp-content/uploads/2026/05/ChatGPT-768x432.webp"
             >
-              <source src="seu_video_aqui.mp4" type="video/mp4" />
+              <source src="/video.mp4" type="video/mp4" />
               Seu navegador não suporta a visualização deste vídeo.
             </video>
           </div>
@@ -229,31 +228,63 @@ export default function App() {
             <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/ChatGPT_Image_30_04_2026__15_00_12-removebg-preview.png" alt="O custo de apenas 1 real por dia" className="w-full h-auto drop-shadow-xl" />
           </div>
 
-          {/* Grid de Informações e Confiança */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 max-w-5xl mx-auto w-full">
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/J1.webp" alt="Atuação rápida" className="w-full h-auto rounded-2xl shadow hover:-translate-y-1 transition duration-300" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/J2.webp" alt="Saúde em primeiro lugar" className="w-full h-auto rounded-2xl shadow hover:-translate-y-1 transition duration-300" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/J3.webp" alt="Proteção 24h" className="w-full h-auto rounded-2xl shadow hover:-translate-y-1 transition duration-300" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/J4.webp" alt="Muito amor" className="w-full h-auto rounded-2xl shadow hover:-translate-y-1 transition duration-300" />
-          </div>
+          {/* Galeria Emocional de Fotos */}
+          <div className="w-full max-w-6xl mx-auto mb-16">
+            
+            <div className="text-center mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Veja nos olhos deles: A sua doação muda tudo.</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Estas são as vidas que você toca. Cada fotografia é uma história de abandono que, com a sua ajuda, pode ter um final feliz.</p>
+            </div>
 
-          {/* Grid de 3 pilares */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full mb-16">
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S1.webp" alt="Saúde e Nutrição" className="w-full h-auto object-cover rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S2.webp" alt="Qualidade da Ração" className="w-full h-auto object-cover rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S3.webp" alt="Amparo 100%" className="w-full h-auto object-cover rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition duration-300" />
-          </div>
-          
-          {/* Missões ou Metas (A1, A2, A3) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto w-full mb-16">
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A1.webp" alt="Missão Resgate" className="w-full h-auto rounded-xl hover:scale-[1.02] transition" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A2.webp" alt="Missão Nutrição" className="w-full h-auto rounded-xl hover:scale-[1.02] transition" />
-            <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A3.webp" alt="Missão Adoção" className="w-full h-auto rounded-xl hover:scale-[1.02] transition" />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Foto 1 */}
+              <div className="relative group overflow-hidden rounded-3xl shadow-xl">
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/J1.webp" alt="Olhar de resgate" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                  <h4 className="text-white font-bold text-xl mb-1">Eles sentem dor e medo</h4>
+                  <p className="text-gray-300 text-sm">Nas ruas, o frio e a fome são a única certeza. Nós mudamos esse destino.</p>
+                </div>
+              </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto w-full">
-               <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/M1.webp" alt="Transparência" className="w-full h-auto rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-1 transition duration-300" />
-               <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/M2.webp" alt="Apoio Total" className="w-full h-auto rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-1 transition duration-300" />
+              {/* Foto 2 */}
+              <div className="relative group overflow-hidden rounded-3xl shadow-xl lg:col-span-2">
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S1.webp" alt="Recuperação e carinho" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                  <h4 className="text-white font-bold text-xl mb-1">A nutrição é o primeiro passo para a cura</h4>
+                  <p className="text-gray-300 text-sm">Antes de pensarmos em adoção, precisamos fortalecer corpos frágeis e famintos.</p>
+                </div>
+              </div>
+
+              {/* Foto 3 */}
+              <div className="relative group overflow-hidden rounded-3xl shadow-xl lg:col-span-2">
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A2.webp" alt="Missão Nutrição" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                  <h4 className="text-white font-bold text-xl mb-1">A alegria do retorno à vida</h4>
+                  <p className="text-gray-300 text-sm">Com barriguinha cheia não há tristeza. É esse ânimo que a sua doação compra todos os dias.</p>
+                </div>
+              </div>
+
+              {/* Foto 4 */}
+              <div className="relative group overflow-hidden rounded-3xl shadow-xl">
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/M2.webp" alt="Carinho" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                  <h4 className="text-white font-bold text-xl mb-1">Amparo garantido</h4>
+                  <p className="text-gray-300 text-sm">Da rua até um novo lar. Nosso compromisso é inabalável graças aos nossos doadores.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto italic">"Um cão resgatado pode não ter a capacidade de dizer 'obrigado', mas os olhos deles dirão isso todos os dias da sua vida."</p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-4 mt-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S2.webp" alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/S3.webp" alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A1.webp" alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src="https://sosanimalhelp.com/wp-content/uploads/2026/04/A3.webp" alt="Apoio" className="h-16 w-auto rounded-lg" />
+            </div>
+
           </div>
 
         </div>
