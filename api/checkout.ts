@@ -15,7 +15,10 @@ export default async function handler(req, res) {
 
     if (!publicKey || !secretKey) {
       console.error("Missing AnubisPay keys");
-      return res.status(500).json({ error: "Server configuration error" });
+      return res.status(500).json({ 
+        error: "Server configuration error",
+        details: "Keys not found! PUBLIC=" + !!publicKey + " SECRET=" + !!secretKey + ". No Vercel vá em Settings -> Environment Variables. Edite as chaves e tenha certeza de que estão marcadas para TODOS OS AMBIENTES (Production, Preview e Development). Depois disso, vá em Deployments, clique nos 3 pontinhos e faça um REDEPLOY."
+      });
     }
 
     const credentials = Buffer.from(`${publicKey}:${secretKey}`).toString("base64");
