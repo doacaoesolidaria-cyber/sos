@@ -80,7 +80,13 @@ export default async function handler(req, res) {
 
     if (!externalApiResponse.ok) {
       console.error("AnubisPay API Error Details:", JSON.stringify(data, null, 2));
-      return res.status(externalApiResponse.status).json({ error: "Failed to create PIX transaction", details: data });
+      
+      let errorMsg = "Failed to create PIX transaction";
+      if (externalApiResponse.status === 401) {
+        errorMsg = `As CHAVES DE API ESTÃO INVÁLIDAS. A Vercel finalmente conseguiu ler as suas chaves, mas a API da AnubisPay rejeitou-as. Motivo mais comum: você inverteu a PUBLIC KEY com a SECRET KEY, copiou um espaço em branco a mais, ou essas chaves foram desativadas. \n\nPublic Key fornecida: ${publicKey.substring(0, 5)}... \nSecret Key fornecida: ${secretKey.substring(0, 5)}...`;
+      }
+      
+      return res.status(externalApiResponse.status).json({ error: errorMsg, details: data });
     }
 
     return res.status(200).json(data);
