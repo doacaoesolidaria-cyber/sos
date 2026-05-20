@@ -10,8 +10,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid amount" });
     }
 
-    let publicKey = process.env.ANUBISPAY_PUBLIC_KEY || process.env.VITE_ANUBISPAY_PUBLIC_KEY || process.env.chave || process.env.CHAVE;
-    let secretKey = process.env.ANUBISPAY_SECRET_KEY || process.env.VITE_ANUBISPAY_SECRET_KEY || process.env.key || process.env.KEY;
+    let publicKey = process.env.ANUBISPAY_PUBLIC_KEY || process.env.VITE_ANUBISPAY_PUBLIC_KEY || process.env.chave || process.env.CHAVE || process.env.PublicKey;
+    let secretKey = process.env.ANUBISPAY_SECRET_KEY || process.env.VITE_ANUBISPAY_SECRET_KEY || process.env.key || process.env.KEY || process.env.SECRETKEY;
 
     // Check if the user accidentally stored them with a newline
     if (publicKey) publicKey = publicKey.trim();
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       const envKeys = Object.keys(process.env).join(", ");
       return res.status(500).json({ 
         error: "Server configuration error",
-        details: "Chaves não encontradas! Encontrei essas variáveis adicionadas por você: 'chave'=(" + !!process.env.chave + ") e 'key'=(" + !!process.env.key + "). Vá na Vercel -> Settings -> Environment Variables, e edite 'chave' (colocando a PUBLIC KEY) e 'key' (colocando a SECRET KEY). Depois faça um Redeploy.",
+        details: "Chaves não encontradas! Encontrei essas variáveis adicionadas por você: 'PublicKey'=(" + !!process.env.PublicKey + ") e 'SECRETKEY'=(" + !!process.env.SECRETKEY + "). Certifique-se de que configurou as variáveis na Vercel no projeto escolhido, abriu as configurações do seu projeto, setou em Project Settings -> Environment Variables, adicionando 'PublicKey' e 'SECRETKEY' e não esqueceu de fazer um REDEPLOY nos Deployments.",
       });
     }
 
