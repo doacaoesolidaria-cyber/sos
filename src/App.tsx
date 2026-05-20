@@ -75,12 +75,22 @@ export default function App() {
         body: JSON.stringify({ amount: option.amount })
       });
       
-      const data = await res.json();
+      let data;
+      const textResponse = await res.text();
+      
+      try {
+        data = JSON.parse(textResponse);
+      } catch (parseError) {
+        console.error("Failed to parse JSON response:", textResponse);
+        alert(`O servidor respondeu de forma inesperada (código ${res.status}):\n\n${textResponse.slice(0, 150)}...\n\nVerifique se o backend na Vercel está ativo.`);
+        setStep('selection');
+        return;
+      }
       
       if (!res.ok) {
         console.error("Erro da API no proxy:", data);
         const errorDetails = data?.details?.errors ? JSON.stringify(data.details.errors) : (data?.details?.title || JSON.stringify(data));
-        alert(`Erro ao gerar transação. Detalhes: ${errorDetails}`);
+        alert(`Erro ao gerar transação (Status ${res.status}). Detalhes: ${errorDetails}`);
         setStep('selection');
         return;
       }
@@ -102,14 +112,15 @@ export default function App() {
         setPixCode(data.pix_code);
         setStep('qrcode');
       } else {
-        alert("Não foi possível gerar o código PIX. Verifique se as credenciais da API AnubisPay foram configuradas corretamente ou se o retorno da API mudou.");
-        throw Error("QR Code missing from API response.");
+        alert(`Sucesso na API, mas QR Code não foi encontrado. Resposta: ${JSON.stringify(data)}`);
+        setStep('selection');
+        return;
       }
       
-    } catch (err) {
+    } catch (err: any) {
       console.error("Erro ao gerar pix:", err);
-      // Se falhar na chamda da API (por ex, erro 500 no proxy)
-      alert("Erro ao validar credenciais ou comunicar com a API AnubisPay. Verifique os logs e as chaves no ambiente.");
+      // Se falhar na chamda da API (por ex, erro de conexão)
+      alert(`Falha de conexão: ${err.message}. Verifique a sua conexão com a Vercel.`);
       setStep('selection');
     }
   };
