@@ -10,14 +10,19 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid amount" });
     }
 
-    const publicKey = process.env.ANUBISPAY_PUBLIC_KEY;
-    const secretKey = process.env.ANUBISPAY_SECRET_KEY;
+    let publicKey = process.env.ANUBISPAY_PUBLIC_KEY || process.env.VITE_ANUBISPAY_PUBLIC_KEY;
+    let secretKey = process.env.ANUBISPAY_SECRET_KEY || process.env.VITE_ANUBISPAY_SECRET_KEY;
+
+    // Check if the user accidentally stored them with a newline
+    if (publicKey) publicKey = publicKey.trim();
+    if (secretKey) secretKey = secretKey.trim();
 
     if (!publicKey || !secretKey) {
       console.error("Missing AnubisPay keys");
+      const envKeys = Object.keys(process.env).join(", ");
       return res.status(500).json({ 
         error: "Server configuration error",
-        details: "Keys not found! PUBLIC=" + !!publicKey + " SECRET=" + !!secretKey + ". No Vercel vá em Settings -> Environment Variables. Edite as chaves e tenha certeza de que estão marcadas para TODOS OS AMBIENTES (Production, Preview e Development). Depois disso, vá em Deployments, clique nos 3 pontinhos e faça um REDEPLOY."
+        details: "As chaves do AnubisPay continuam invisíveis para a Vercel. Isso significa que a Vercel não enviou as variáveis para a função. SOLUÇÃO DEFINITIVA: 1. Vá no painel da Vercel. 2. Acesse as configurações EXCLUSIVAS do projeto (Project Settings -> Environment Variables) em vez das configurações da Equipe (Team Settings). 3. Adicione lá: ANUBISPAY_PUBLIC_KEY e ANUBISPAY_SECRET_KEY. 4. Vá em Deployments e faça um REDEPLOY. (Variáveis disponíveis no momento: " + envKeys + ")",
       });
     }
 
