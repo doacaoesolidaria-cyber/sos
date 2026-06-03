@@ -9,7 +9,7 @@ const donationOptions = [
     price: 'R$ 33,79',
     desc: 'Alimenta 5 animais resgatados do abandono por 3 dias inteiros. Um pequeno gesto, um impacto enorme.',
     amount: 3379,
-    image: '/ChatGPT_Image_29_04_2026__14_16_37-removebg-preview.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_29_04_2026__14_16_37-removebg-preview.png',
     featured: false,
   },
   { 
@@ -18,7 +18,7 @@ const donationOptions = [
     price: 'R$ 64,90',
     desc: 'Alimenta 7 animais por 5 dias com nutrição adequada. Nos ajuda a manter as barriguinhas cheias!',
     amount: 6490,
-    image: '/ChatGPT_Image_29_04_2026__14_19_53-removebg-preview.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_29_04_2026__14_19_53-removebg-preview.png',
     featured: true,
   },
   { 
@@ -27,7 +27,7 @@ const donationOptions = [
     price: 'R$ 91,45',
     desc: 'Garante a sobrevivência de 9 animais por quase uma semana completa. Menos fome, mais esperança.',
     amount: 9145,
-    image: '/ChatGPT_Image_29_04_2026__14_09_58-removebg-preview.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_29_04_2026__14_09_58-removebg-preview.png',
     featured: false,
   },
   { 
@@ -36,7 +36,7 @@ const donationOptions = [
     price: 'R$ 177,32',
     desc: 'Um impacto gigantesco: alimenta 15 animais por 8 dias no nosso abrigo. Eles precisam da sua força.',
     amount: 17732,
-    image: '/ChatGPT_Image_29_04_2026__14_22_49-removebg-preview.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_29_04_2026__14_22_49-removebg-preview.png',
     featured: false,
   },
   { 
@@ -45,7 +45,7 @@ const donationOptions = [
     price: 'R$ 416,75',
     desc: 'Uma doação extraordinária: alimenta 28 animais carentes por 12 dias. Você vira nosso principal parceiro.',
     amount: 41675,
-    image: '/ChatGPT_Image_29_04_2026__19_10_21-removebg-preview-rmqni74p1zqibihkjgy8wfacw7r806b4irj2f39s4g.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_29_04_2026__19_10_21-removebg-preview-rmqni74p1zqibihkjgy8wfacw7r806b4irj2f39s4g.png',
     featured: false,
   },
   { 
@@ -54,7 +54,7 @@ const donationOptions = [
     price: 'R$ 742,90',
     desc: 'O milagre que esperávamos: salva e alimenta 45 animais durante 18 dias! Seja um anjo da guarda.',
     amount: 74290,
-    image: '/ChatGPT-Image-29_04_2026-19_05_29-rmqn9z1j96h6qcfnkeyrl005rualninoe2148xgskg.png?v=5',
+    image: 'https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT-Image-29_04_2026-19_05_29-rmqn9z1j96h6qcfnkeyrl005rualninoe2148xgskg.png',
     featured: false,
   },
 ];
@@ -155,9 +155,9 @@ export default function Home() {
               controls 
               playsInline
               className="w-full h-full object-cover"
-              poster='/ChatGPT-768x432.webp?v=5'
+              poster='https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT-768x432.webp'
             >
-              <source src='/video.mp4?v=5' type="video/mp4" />
+              <source src='https://sosanimalhelp.org/wp-content/uploads/2026/05/video.mp4' type="video/mp4" />
               Seu navegador não suporta a visualização deste vídeo.
             </video>
           </div>
@@ -182,12 +182,12 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           <div className="w-full md:w-1/2 flex flex-col gap-6">
             <img 
-              src='/ChatGPT-768x432.webp?v=5' 
+              src='https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT-768x432.webp' 
               alt="Cão com olhar de esperança" 
               className="w-full h-auto object-cover rounded-3xl shadow-2xl shadow-gray-200" 
             />
             <img 
-              src='/eles.webp?v=5' 
+              src='https://sosanimalhelp.org/wp-content/uploads/2026/05/eles.webp' 
               alt="Eles precisam de você" 
               className="w-full h-auto object-cover object-top rounded-3xl shadow-2xl shadow-gray-200" 
             />
@@ -225,7 +225,7 @@ export default function Home() {
           </p>
 
           <div className="w-full max-w-3xl mb-16">
-            <img src='/ChatGPT_Image_30_04_2026__15_00_12-removebg-preview.png?v=5' alt="O custo de apenas 1 real por dia" className="w-full h-auto drop-shadow-xl" />
+            <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_30_04_2026__15_00_12-removebg-preview.png' alt="O custo de apenas 1 real por dia" className="w-full h-auto drop-shadow-xl" />
           </div>
 
           {/* Galeria Emocional de Fotos */}
@@ -239,7 +239,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Foto 1 */}
               <div className="relative group overflow-hidden rounded-3xl shadow-xl">
-                <img src='/J1.webp?v=5' alt="Olhar de resgate" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/J1.webp' alt="Olhar de resgate" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                   <h4 className="text-white font-bold text-xl mb-1">Eles sentem dor e medo</h4>
                   <p className="text-gray-300 text-sm">Nas ruas, o frio e a fome são a única certeza. Nós mudamos esse destino.</p>
@@ -248,7 +248,7 @@ export default function Home() {
 
               {/* Foto 2 */}
               <div className="relative group overflow-hidden rounded-3xl shadow-xl lg:col-span-2">
-                <img src='/S1.webp?v=5' alt="Recuperação e carinho" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/S1.webp' alt="Recuperação e carinho" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                   <h4 className="text-white font-bold text-xl mb-1">A nutrição é o primeiro passo para a cura</h4>
                   <p className="text-gray-300 text-sm">Antes de pensarmos em adoção, precisamos fortalecer corpos frágeis e famintos.</p>
@@ -257,7 +257,7 @@ export default function Home() {
 
               {/* Foto 3 */}
               <div className="relative group overflow-hidden rounded-3xl shadow-xl lg:col-span-2">
-                <img src='/A2.webp?v=5' alt="Missão Nutrição" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/A2.webp' alt="Missão Nutrição" className="w-full h-[300px] object-cover object-center group-hover:scale-110 transition duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                   <h4 className="text-white font-bold text-xl mb-1">A alegria do retorno à vida</h4>
                   <p className="text-gray-300 text-sm">Com barriguinha cheia não há tristeza. É esse ânimo que a sua doação compra todos os dias.</p>
@@ -266,7 +266,7 @@ export default function Home() {
 
               {/* Foto 4 */}
               <div className="relative group overflow-hidden rounded-3xl shadow-xl">
-                <img src='/M2.webp?v=5' alt="Carinho" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/M2.webp' alt="Carinho" className="w-full h-[300px] object-cover group-hover:scale-110 transition duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                   <h4 className="text-white font-bold text-xl mb-1">Amparo garantido</h4>
                   <p className="text-gray-300 text-sm">Da rua até um novo lar. Nosso compromisso é inabalável graças aos nossos doadores.</p>
@@ -279,10 +279,10 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 mt-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-                <img src='/S2.webp?v=5' alt="Apoio" className="h-16 w-auto rounded-lg" />
-                <img src='/S3.webp?v=5' alt="Apoio" className="h-16 w-auto rounded-lg" />
-                <img src='/A1.webp?v=5' alt="Apoio" className="h-16 w-auto rounded-lg" />
-                <img src='/A3.webp?v=5' alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/S2.webp' alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/S3.webp' alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/A1.webp' alt="Apoio" className="h-16 w-auto rounded-lg" />
+                <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/A3.webp' alt="Apoio" className="h-16 w-auto rounded-lg" />
             </div>
 
           </div>
@@ -427,8 +427,8 @@ export default function Home() {
         </h3>
         
         <div className="max-w-4xl w-full flex flex-col gap-6 items-center">
-          <img src='/doacao_segura_fundo_transparente.webp?v=5' alt="Doação Segura e Processador" className="w-full max-w-2xl h-auto opacity-80 hover:opacity-100 transition-opacity" />
-          <img src='/ChatGPT_Image_30_04_2026__15_38_18-removebg-preview.png?v=5' alt="Garantia" className="w-full max-w-xl h-auto opacity-70 hover:opacity-100 transition-opacity" />
+          <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/doacao_segura_fundo_transparente.webp' alt="Doação Segura e Processador" className="w-full max-w-2xl h-auto opacity-80 hover:opacity-100 transition-opacity" />
+          <img src='https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_30_04_2026__15_38_18-removebg-preview.png' alt="Garantia" className="w-full max-w-xl h-auto opacity-70 hover:opacity-100 transition-opacity" />
         </div>
         
         <div className="w-full max-w-4xl mx-auto mt-12 mb-8 px-4">
