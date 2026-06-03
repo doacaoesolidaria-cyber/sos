@@ -49,7 +49,7 @@ async function run() {
     fs.mkdirSync(publicDir, { recursive: true });
   }
 
-  console.log('Downloading assets for build...');
+  console.log('Downloading assets for Vercel deployment...');
   for (const url of urls) {
     const filename = path.basename(url);
     const dest = path.join(publicDir, filename);
