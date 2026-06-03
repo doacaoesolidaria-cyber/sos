@@ -24,24 +24,23 @@ const urls = [
   "https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT_Image_30_04_2026__15_38_18-removebg-preview.png"
 ];
 
-const download = (url, dest) => new Promise((resolve, reject) => {
-  https.get(url, { rejectUnauthorized: false }, (res) => {
-    if (res.statusCode !== 200) {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        return download(res.headers.location, dest).then(resolve).catch(reject);
+const download = async (url, dest) => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000); // 15s timeout
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       }
-      reject(new Error(`Failed to get ${url} (status code: ${res.statusCode})`));
-      return;
-    }
-    const data = [];
-    res.on('data', chunk => data.push(chunk));
-    res.on('end', () => {
-      const buffer = Buffer.concat(data);
-      fs.writeFileSync(dest, buffer);
-      resolve();
     });
-  }).on('error', err => reject(err));
-});
+    if (!res.ok) throw new Error(`Status ${res.status}`);
+    const buffer = await res.arrayBuffer();
+    fs.writeFileSync(dest, Buffer.from(buffer));
+  } finally {
+    clearTimeout(timeout);
+  }
+};
 
 async function run() {
   const publicDir = path.join(process.cwd(), 'public');
