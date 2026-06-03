@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const donationOptions = [
   { 
@@ -64,6 +64,7 @@ export default function Home() {
   const [selectedOption, setSelectedOption] = useState<typeof donationOptions[0] | null>(null);
   const [copied, setCopied] = useState(false);
   const [pixCode, setPixCode] = useState('00020126420014br.gov.bcb.pix0120doacao@sosanimal.com5204000053039865802BR5915SOS ANIMAL HELP6009SAO PAULO62140510DONATION0163045A9D');
+  const navigate = useNavigate();
 
   const handleSelect = async (option: typeof donationOptions[0]) => {
     setSelectedOption(option);
@@ -401,6 +402,13 @@ export default function Home() {
                         ) : (
                           <>COPIAR CÓDIGO PIX</>
                         )}
+                      </button>
+
+                      <button 
+                        onClick={() => navigate('/obrigado')}
+                        className="w-full mt-4 py-4 rounded-2xl font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors"
+                      >
+                        Já realizei o pagamento
                       </button>
                       <p className="text-xs text-gray-400 mt-4 text-center">Pagamento 100% seguro processado instantaneamente.</p>
                     </div>
