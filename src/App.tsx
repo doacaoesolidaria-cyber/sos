@@ -424,6 +424,23 @@ export default function App() {
           <img src="/ChatGPT_Image_30_04_2026__15_38_18-removebg-preview.png" alt="Garantia" className="w-full max-w-xl h-auto opacity-70 hover:opacity-100 transition-opacity" />
         </div>
         
+        <div className="w-full max-w-4xl mx-auto mt-12 mb-8 px-4">
+          <h4 className="text-lg font-bold text-gray-700 mb-4 uppercase tracking-wider">Nossa Localização</h4>
+          <div className="w-full h-64 md:h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+            <iframe 
+              src="https://maps.google.com/maps?q=Posto%20Ipiranga%20-%20Av.%20Luiz%20Tarqu%C3%ADnio%20Pontes,%202054%20-%20Pitangueiras,%20Lauro%20de%20Freitas%20-%20BA,%2042700-000&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização SOS Animal Help"
+            ></iframe>
+          </div>
+          <p className="text-gray-500 mt-4 text-sm font-medium">Posto Ipiranga - Av. Luiz Tarquínio Pontes, 2054 - Pitangueiras, Lauro de Freitas - BA, 42700-000</p>
+        </div>
+        
         <p className="mt-12 text-sm text-gray-400 max-w-md mx-auto">
           &copy; {new Date().getFullYear()} SOS Animal Help. Todos os direitos reservados. 
           Sua doação salva vidas todos os dias. Muito obrigado pela sua generosidade.
