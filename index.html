@@ -6,6 +6,17 @@
     <title>SOS Animal Help</title>
 <!-- Meta Pixel Code -->
 <script>
+try {
+  // Fix for "Cannot set property fetch of #<Window> which has only a getter" when in iframe
+  if (window !== window.top && !Object.getOwnPropertyDescriptor(window, 'fetch').writable) {
+    Object.defineProperty(window, 'fetch', {
+      writable: true,
+      configurable: true,
+      value: window.fetch
+    });
+  }
+} catch (e) {}
+
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -14,6 +25,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('set', 'autoConfig', false, '2093639501173506');
 fbq('init', '2093639501173506');
 fbq('track', 'PageView');
 </script>

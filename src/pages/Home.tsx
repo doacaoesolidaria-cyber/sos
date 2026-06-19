@@ -60,6 +60,7 @@ const donationOptions = [
 ];
 
 export default function Home() {
+  const [videoError, setVideoError] = useState(false);
   const [step, setStep] = useState<'selection' | 'generating' | 'qrcode'>('selection');
   const [selectedOption, setSelectedOption] = useState<typeof donationOptions[0] | null>(null);
   const [copied, setCopied] = useState(false);
@@ -157,16 +158,38 @@ export default function Home() {
         
         {/* VIDEO AT THE VERY BEGINNING */}
         <div className="w-full max-w-4xl mx-auto mb-10">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/50 bg-black aspect-video w-full flex items-center justify-center">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/50 bg-black aspect-video w-full flex items-center justify-center group">
+            {/* If the video gets uploaded, it will play. For now we show the poster and a message if it fails */}
             <video 
-              controls 
+              controls={!videoError}
               playsInline
-              className="w-full h-full object-cover"
-              poster='https://sosanimalhelp.org/wp-content/uploads/2026/05/ChatGPT-768x432.webp'
+              className={`w-full h-full object-cover z-10 ${videoError ? 'invisible' : ''}`}
+              poster='/ChatGPT-768x432.webp'
+              onError={() => setVideoError(true)}
             >
-              <source src='https://sosanimalhelp.org/wp-content/uploads/2026/05/video.mp4' type="video/mp4" />
+              <source 
+                src='/video.mp4' 
+                type="video/mp4" 
+                onError={() => setVideoError(true)} 
+              />
               Seu navegador não suporta a visualização deste vídeo.
             </video>
+            
+            {/* Fallback when video fails to load (404) */}
+            {videoError && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center z-20">
+                <div className="bg-red-600/20 text-red-400 p-4 rounded-full mb-4">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 drop-shadow-md">Vídeo não encontrado</h3>
+                <p className="text-gray-100 max-w-md drop-shadow-md font-medium">
+                  Não foi possível carregar o vídeo.<br/><br/>
+                  Certifique-se de que o arquivo de vídeo foi carregado corretamente para a pasta "public".
+                </p>
+              </div>
+            )}
           </div>
         </div>
         
