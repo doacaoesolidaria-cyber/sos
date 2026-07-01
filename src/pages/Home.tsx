@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -66,6 +66,15 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [pixCode, setPixCode] = useState('00020126420014br.gov.bcb.pix0120doacao@sosanimal.com5204000053039865802BR5915SOS ANIMAL HELP6009SAO PAULO62140510DONATION0163045A9D');
   const navigate = useNavigate();
+  const pixContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (step === 'generating' || step === 'qrcode') {
+      setTimeout(() => {
+        pixContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  }, [step]);
 
   const handleSelect = async (option: typeof donationOptions[0]) => {
     setSelectedOption(option);
@@ -371,7 +380,7 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="w-full max-w-2xl mx-auto">
+              <div className="w-full max-w-2xl mx-auto" ref={pixContainerRef}>
                 <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
                   
                   <button onClick={reset} className="absolute top-6 left-6 text-gray-500 hover:text-gray-800 font-semibold flex items-center gap-2 transition">
