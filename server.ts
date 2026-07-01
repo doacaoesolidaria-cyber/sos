@@ -23,21 +23,21 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API to handle AnubisPay PIX creation
+  // API to handle MedusaPay PIX creation
   app.post("/api/checkout", async (req, res) => {
     try {
       const { amount } = req.body;
-      const publicKey = process.env.ANUBISPAY_PUBLIC_KEY;
-      const secretKey = process.env.ANUBISPAY_SECRET_KEY;
+      const publicKey = process.env.MEDUSAPAY_PUBLIC_KEY;
+      const secretKey = process.env.MEDUSAPAY_SECRET_KEY;
 
       if (!publicKey || !secretKey) {
-        return res.status(500).json({ error: "Missing AnubisPay credentials in environment" });
+        return res.status(500).json({ error: "Missing MedusaPay credentials in environment" });
       }
 
-      const credentials = Buffer.from(`${publicKey}:${secretKey}`).toString("base64");
+      const credentials = Buffer.from(`${secretKey}:x`).toString("base64");
       const cpf = generateCpf();
 
-      const response = await fetch("https://api.anubispay.com/v1/payment-transaction/create", {
+      const response = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
         method: "POST",
         headers: {
           "Authorization": `Basic ${credentials}`,
@@ -45,8 +45,8 @@ async function startServer() {
         },
         body: JSON.stringify({
           amount: amount, // amount is already in cents from frontend
-          payment_method: "pix",
-          postback_url: "https://doacao-esolidaria.com/webhook",
+          paymentMethod: "pix",
+          postbackUrl: "https://doacao-esolidaria.com/webhook",
           customer: {
             name: "João Silva",
             email: "joao@example.com",
@@ -54,31 +54,30 @@ async function startServer() {
               number: cpf,
               type: "cpf"
             },
-            phone: "+5511999999999"
+            phone: "11999999999"
           },
           items: [
             {
               title: "Doação SOS Animal Help",
-              unit_price: amount,
+              unitPrice: amount,
               quantity: 1,
               tangible: false
             }
           ],
           pix: {
-            expires_in_days: 1
+            expiresInDays: 1
           },
-          metadata: { provider_name: "Doacao SOS Animal Help" }
+          metadata: "Doacao SOS Animal Help"
         })
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        console.error("AnubisPay API Error Details:", JSON.stringify(data, null, 2));
+        console.error("MedusaPay API Error Details:", JSON.stringify(data, null, 2));
         return res.status(response.status).json({ error: "Failed to create PIX transaction", details: data });
       }
 
-      // Assuming the API returns the PIX code in some field like `pixCode` or `qrcode` or `payload`
       // We will send the whole response to the frontend to handle, or extract what's possible.
       res.json(data);
     } catch (error) {

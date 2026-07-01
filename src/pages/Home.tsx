@@ -116,6 +116,15 @@ export default function Home() {
       } else if (data?.pix?.[0]?.qr_code) {
         setPixCode(data.pix[0].qr_code);
         setStep('qrcode');
+      } else if (data?.pix?.qrCodeText) {
+        setPixCode(data.pix.qrCodeText);
+        setStep('qrcode');
+      } else if (data?.pix?.qrcodeText) {
+        setPixCode(data.pix.qrcodeText);
+        setStep('qrcode');
+      } else if (data?.pix?.qr_code) {
+        setPixCode(data.pix.qr_code);
+        setStep('qrcode');
       } else if (data?.qr_code) {
         setPixCode(data.qr_code);
         setStep('qrcode');

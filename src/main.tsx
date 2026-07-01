@@ -4,12 +4,11 @@ import './index.css';
 
 // Fix for environments that redefine fetch as a getter (like AI Studio preview)
 try {
-  const descriptor = Object.getOwnPropertyDescriptor(window, 'fetch');
-  if (descriptor && !descriptor.writable && !descriptor.set && descriptor.configurable) {
-    let _fetch = window.fetch;
+  if (typeof window !== 'undefined') {
+    const originalFetch = window.fetch;
     Object.defineProperty(window, 'fetch', {
-      get: () => _fetch,
-      set: (val) => { _fetch = val; },
+      value: originalFetch,
+      writable: true,
       configurable: true,
       enumerable: true
     });
