@@ -10,23 +10,23 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid amount" });
     }
 
-    let publicKey = process.env.ANUBISPAY_PUBLIC_KEY || process.env.VITE_ANUBISPAY_PUBLIC_KEY || process.env.chave || process.env.CHAVE || process.env.PublicKey;
-    let secretKey = process.env.ANUBISPAY_SECRET_KEY || process.env.VITE_ANUBISPAY_SECRET_KEY || process.env.key || process.env.KEY || process.env.SECRETKEY;
+    let publicKey = process.env.MEDUSAPAY_PUBLIC_KEY || process.env.ANUBISPAY_PUBLIC_KEY || process.env.VITE_ANUBISPAY_PUBLIC_KEY || process.env.chave || process.env.CHAVE || process.env.PublicKey;
+    let secretKey = process.env.MEDUSAPAY_SECRET_KEY || process.env.ANUBISPAY_SECRET_KEY || process.env.VITE_ANUBISPAY_SECRET_KEY || process.env.key || process.env.KEY || process.env.SECRETKEY;
 
     // Check if the user accidentally stored them with a newline
     if (publicKey) publicKey = publicKey.trim();
     if (secretKey) secretKey = secretKey.trim();
 
     if (!publicKey || !secretKey) {
-      console.error("Missing AnubisPay keys");
+      console.error("Missing MedusaPay keys");
       const envKeys = Object.keys(process.env).join(", ");
       return res.status(500).json({ 
         error: "Server configuration error",
-        details: "Chaves não encontradas! Encontrei essas variáveis adicionadas por você: 'PublicKey'=(" + !!process.env.PublicKey + ") e 'SECRETKEY'=(" + !!process.env.SECRETKEY + "). Certifique-se de que configurou as variáveis na Vercel no projeto escolhido, abriu as configurações do seu projeto, setou em Project Settings -> Environment Variables, adicionando 'PublicKey' e 'SECRETKEY' e não esqueceu de fazer um REDEPLOY nos Deployments.",
+        details: "Chaves não encontradas! Encontrei essas variáveis adicionadas por você: 'PublicKey'=(" + !!process.env.PublicKey + ") e 'SECRETKEY'=(" + !!process.env.SECRETKEY + "). Certifique-se de que configurou as variáveis na Vercel no projeto escolhido, abriu as configurações do seu projeto, setou em Project Settings -> Environment Variables, adicionando 'MEDUSAPAY_PUBLIC_KEY' e 'MEDUSAPAY_SECRET_KEY' e não esqueceu de fazer um REDEPLOY nos Deployments.",
       });
     }
 
-    const credentials = Buffer.from(`${publicKey}:${secretKey}`).toString("base64");
+    const credentials = Buffer.from(`${secretKey}:x`).toString("base64");
     
     // Generate a valid CPF format
     const t = () => Math.floor(Math.random() * 9);
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     if (d2 >= 10) d2 = 0;
     const cpf = [...n, d1, d2].join("");
 
-    const externalApiResponse = await fetch("https://api.anubispay.com/v1/payment-transaction/create", {
+    const externalApiResponse = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
       method: "POST",
       headers: {
         "Authorization": `Basic ${credentials}`,
@@ -50,8 +50,8 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         amount: amount, // amount is already in cents from frontend
-        payment_method: "pix",
-        postback_url: "https://doacao-esolidaria.com/webhook",
+        paymentMethod: "pix",
+        postbackUrl: "https://doacao-esolidaria.com/webhook",
         customer: {
           name: "João Silva",
           email: "joao@example.com",
@@ -59,31 +59,31 @@ export default async function handler(req, res) {
             number: cpf,
             type: "cpf"
           },
-          phone: "+5511999999999"
+          phone: "11999999999"
         },
         items: [
           {
             title: "Doação SOS Animal Help",
-            unit_price: amount,
+            unitPrice: amount,
             quantity: 1,
             tangible: false
           }
         ],
         pix: {
-          expires_in_days: 1
+          expiresInDays: 1
         },
-        metadata: { provider_name: "Doacao SOS Animal Help" }
+        metadata: "Doacao SOS Animal Help"
       })
     });
 
     const data = await externalApiResponse.json();
 
     if (!externalApiResponse.ok) {
-      console.error("AnubisPay API Error Details:", JSON.stringify(data, null, 2));
+      console.error("MedusaPay API Error Details:", JSON.stringify(data, null, 2));
       
       let errorMsg = "Failed to create PIX transaction";
       if (externalApiResponse.status === 401) {
-        errorMsg = `As CHAVES DE API ESTÃO INVÁLIDAS. A Vercel finalmente conseguiu ler as suas chaves, mas a API da AnubisPay rejeitou-as. Motivo mais comum: você inverteu a PUBLIC KEY com a SECRET KEY, copiou um espaço em branco a mais, ou essas chaves foram desativadas. \n\nPublic Key fornecida: ${publicKey.substring(0, 5)}... \nSecret Key fornecida: ${secretKey.substring(0, 5)}...`;
+        errorMsg = `As CHAVES DE API ESTÃO INVÁLIDAS. A Vercel finalmente conseguiu ler as suas chaves, mas a API da MedusaPay rejeitou-as. Motivo mais comum: você inverteu a PUBLIC KEY com a SECRET KEY, copiou um espaço em branco a mais, ou essas chaves foram desativadas. \n\nPublic Key fornecida: ${publicKey.substring(0, 5)}... \nSecret Key fornecida: ${secretKey.substring(0, 5)}...`;
       }
       
       return res.status(externalApiResponse.status).json({ error: errorMsg, details: data });
