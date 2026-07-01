@@ -7,6 +7,14 @@ export default function ThankYou() {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'Purchase', { currency: 'BRL', value: 0 }); // You can update value via search params if needed
     }
+
+    // Dispara o evento de compra do Google Ads
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-18240919051/XjtCCM2kj8AcEIus-flD',
+          'transaction_id': ''
+      });
+    }
   }, []);
 
   return (
