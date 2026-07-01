@@ -80,13 +80,6 @@ export default function Home() {
     setSelectedOption(option);
     setStep('generating');
     
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout', { 
-        currency: 'BRL', 
-        value: option.amount / 100 
-      });
-    }
-    
     try {
       const res = await fetch('/api/checkout', {
         method: 'POST',

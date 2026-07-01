@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 
 export default function ThankYou() {
   useEffect(() => {
-    // Dispara o evento de compra do Facebook Pixel
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Purchase', { currency: 'BRL', value: 0 }); // You can update value via search params if needed
-    }
-
     // Dispara o evento de compra do Google Ads
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
